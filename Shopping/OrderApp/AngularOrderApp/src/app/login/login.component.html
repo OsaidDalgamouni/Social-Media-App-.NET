@@ -1,0 +1,50 @@
+<div class="d-flex justify-content-center mb-3 mt-4 ">
+
+
+  <h4>Login</h4>
+</div>
+
+<div class="card-body b-4 d-flex justify-content-center">
+
+  <form [formGroup]="LoginForm" (ngSubmit)="LoginSubmitted() " class="px-md-2">
+    
+    <div class="form-outline mb-4">
+      <div>
+        <label for="email" class="form-lable">Email</label>
+      </div>
+      <div>
+        <input type="text" id="email" class="form-input pl-5" formControlName="email" />
+        <span class="text-red" *ngIf="(login_emailControl.touched || isLoginFormSubmitted)&&(login_emailControl.error?.['email'])">Email can't be blank'</span>
+      </div>
+
+    </div>
+    <div class="form-outline mb-4">
+      <div>
+        <label for="password" class="form-lable">password</label>
+      </div>
+      <div class="ml-2">
+        <input type="password" id="password" class="form-input pl-5" formControlName="password" />
+        <span class="text-red" *ngIf="( login_passwordControl.touched || isLoginFormSubmitted)&&( login_passwordControl.error?.['required'])">password can't be blank'</span>
+      </div>
+
+    </div>
+
+    <div class="form-outline mb-4">
+      <div>
+
+      </div>
+      <div>
+        <button type="submit" class=" btn btn-primary">Submit</button>
+      </div>
+
+    </div>
+
+
+
+
+
+  </form>
+
+
+</div>
+

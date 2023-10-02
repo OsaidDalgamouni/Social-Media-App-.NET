@@ -1,0 +1,65 @@
+<div class="flex row mt-5">
+  <div class="col-6">
+    <div class="container">
+      <table class="table table-borderd  table-hover" [formGroup]="PutOderForm">
+        <thead>
+        <th>ID</th>
+        <th>Customer name</th>
+        <th>OrderDate</th>
+        <th>Total</th>
+        </thead>
+        <tbody formArrayName="orders">
+          <tr *ngFor="let order of orders;let i = index ">
+
+            <td>{{i+1}}</td>
+            <td [formGroupName]="i">
+              <input formControlName="customername" [ngClass]="{'btn':order.orderid!=editOrderId,'form-input':order.orderid==editOrderId}"/><!--[disableContorl]="order.orderid!=editOrderId"--> 
+            </td>
+            <td [formGroupName]="i">
+            <input formControlName="orderdate" [ngClass]="{'btn':order.orderid!=editOrderId,'form-input':order.orderid==editOrderId}" />
+            </td>
+            <td [formGroupName]="i">
+              <input formControlName="totalamount" [ngClass]="{'btn':order.orderid!=editOrderId,'form-input':order.orderid==editOrderId}" />
+            </td>
+            <td>
+              <button class="btn btn-primary" (click)="EditClickOrder(order)" *ngIf="order.orderid!=editOrderId">Edit</button>
+              <button class="btn btn-primary" (click)="UpdateClickOrder(i)" *ngIf="order.orderid==editOrderId">Update</button>
+
+
+            </td>
+
+
+
+          </tr>
+        </tbody>
+      </table>
+
+    </div>
+  </div>
+  <div class=" col-4 "style="margin-left:100px;">
+    <div class="form-container form-control">
+      <h3>Create Order</h3>
+      <form [formGroup]="PostOrderForm" (ngSubmit)="PostOrderSubmit()">
+
+        <div class="">
+          <label for="customername" class="form-label">CustomerName</label>
+          <input type="text" id="customername" class="form-control" formControlName="customername" />
+        </div>
+        <div class="">
+          <label for="orderdate" class="form-label">orderdate</label>
+          <input type="date" id="orderdate" class="form-control" formControlName="orderdate" />
+        </div>
+        <div class="">
+          <label for="totalamount" class="form-label">totalamount</label>
+          <input type="text" id="totalamount" class="form-control" formControlName="totalamount" />
+        </div>
+        <div>
+          <button type="submit" class="btn btn-primary mt-3">AddOrder</button>
+        </div>
+      </form>
+
+    </div>
+  </div>
+</div>
+
+
